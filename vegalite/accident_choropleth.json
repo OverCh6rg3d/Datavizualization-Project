@@ -41,7 +41,7 @@
       "scale": {"range": "heatmap"}
     },
     "tooltip": [
-      {"field": "properties.COMMUNITY_E", "type": "nominal", "title": "Community"},
+      {"field": "properties.CNAME_E", "type": "nominal", "title": "Community"},
       {"field": "Accident_Count", "type": "quantitative", "title": "Accident Count"}
     ]
   },
