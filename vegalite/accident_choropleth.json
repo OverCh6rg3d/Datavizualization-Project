@@ -38,7 +38,7 @@
       "field": "Accident_Count",
       "type": "quantitative",
       "title": "Accident Count",
-      "scale": {"range": "heatmap"}
+      "scale":{"scheme":"reds"}
     },
     "tooltip": [
       {"field": "properties.CNAME_E", "type": "nominal", "title": "Community"},
