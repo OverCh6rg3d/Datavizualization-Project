@@ -8,7 +8,7 @@ OUT_COMM_WEEK = "weekly_counts_by_community.csv"
 OUT_WEEKLY_TOTAL = "weekly_total.csv"
 
 # The date range you specified: March 6, 2024 -> Sep 25, 2024
-START_DATE = pd.to_datetime("2024-03-06")   # inclusive week 1 start
+START_DATE = pd.to_datetime("2023-03-09")   # inclusive week 1 start
 END_DATE   = pd.to_datetime("2024-09-25")   # inclusive (last day)
 
 # --- Helper: normalize community names to help joining with GeoJSON ---
