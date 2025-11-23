@@ -22,7 +22,7 @@ const spec = {
           },
           "mark": {
             "type": "geoshape",
-            "fill": "#f0f0f0",
+            "fill": "#ffffff",
             "stroke": "#ffffff",
             "strokeWidth": 1
           }
