@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dubai Accidents Visualization</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- UPDATED: Using the latest versions to ensure geoshape interactivity works -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    #vis {
+      width: 100%;
+      max-width: 1000px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .instructions {
+      margin-bottom: 20px;
+      color: #666;
+      font-size: 0.9em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Dubai Accidents Analysis</h1>
+  <div class="instructions">
+    <strong>Interactions:</strong> Drag across the timeline to filter the map. <br/>
+    Click a community on the map to filter the timeline. Double-click the map to reset.
+  </div>
+  <div id="vis"></div>
+  
+  <script src="choropleth_linechart.js"></script>
+
+</body>
+</html>
