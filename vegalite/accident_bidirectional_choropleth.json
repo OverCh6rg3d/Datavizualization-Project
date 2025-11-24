@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "title": "Accidents by Community & Time (Click Map to Filter Line Chart)",
+  "title": "",
   "data": {
     "url": "https://raw.githubusercontent.com/OverCh6rg3d/Datavizualization-Project/refs/heads/main/data/weekly_counts_by_community.csv",
     "format": {"type": "csv"}
@@ -21,7 +21,7 @@
           },
           "mark": {
             "type": "geoshape",
-            "fill": "#e0e0e0",
+            "fill": "#ffffff",
             "stroke": "#ffffff",
             "strokeWidth": 1
           }
@@ -30,7 +30,12 @@
           "params": [
             {
               "name": "community_select",
-              "select": {"type": "point", "fields": ["Community"]}
+              "select": {
+                "type": "point",
+                "fields": ["Community"],
+                "on": "click",
+                "clear": "dblclick"
+              }
             }
           ],
           "transform": [
@@ -58,7 +63,7 @@
               "filter": "isValid(datum.geometry)"
             }
           ],
-          "mark": "geoshape",
+          "mark": {"type": "geoshape", "cursor": "pointer"},
           "encoding": {
             "shape": {"field": "geometry", "type": "geojson"},
             "color": {
@@ -72,7 +77,7 @@
               "value": 0.2
             },
             "tooltip": [
-              {"field": "properties.CNAME_E", "type": "nominal", "title": "Community"},
+              {"field": "Community", "type": "nominal", "title": "Community"},
               {"field": "Total_Accidents", "type": "quantitative", "title": "Accidents"}
             ]
           }
@@ -92,14 +97,18 @@
       "transform": [
         {
           "filter": {"param": "community_select"}
+        },
+        {
+          "filter": "datum.Accident_Count > 0"
         }
       ],
       "mark": "line",
       "encoding": {
         "x": {
           "field": "week_start",
-          "type": "temporal",
-          "axis": {"title": "Week", "format": "%b %d"}
+          "type": "ordinal",
+          "timeUnit": "yearmonthdate",
+          "axis": {"title": "Week", "format": "%Y %b %d", "labelAngle": -45}
         },
         "y": {
           "field": "Accident_Count",
