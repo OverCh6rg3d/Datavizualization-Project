@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "title": "Dubai Accidents & Population Density Analysis",
+  "data": {
+    "url": "https://raw.githubusercontent.com/OverCh6rg3d/Datavizualization-Project/refs/heads/main/data/Accidents.csv"
+  },
+  "transform": [
+    {
+      "lookup": "Community",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/OverCh6rg3d/Datavizualization-Project/refs/heads/main/data/community_population_density.csv"
+        },
+        "key": "Name",
+        "fields": ["Population Density"]
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "title": "Accidents by Category (Click to Filter Scatterplot)",
+      "height": 200,
+      "width": 700,
+      "mark": "bar",
+      "params": [
+        {
+          "name": "category_selection",
+          "select": {"type": "point", "fields": ["Category"]}
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Category",
+          "type": "nominal",
+          "sort": "-y",
+          "axis": {"labelAngle": 0}
+        },
+        "y": {"aggregate": "count", "title": "Total Accidents"},
+        "color": {
+          "field": "Category",
+          "type": "nominal",
+          "legend": null
+        },
+        "opacity": {
+          "condition": {"param": "category_selection", "value": 1},
+          "value": 0.3
+        }
+      }
+    },
+    {
+      "title": "Population Density vs Accident Count",
+      "height": 300,
+      "width": 700,
+      "params": [
+        {
+          "name": "grid",
+          "select": "interval",
+          "bind": "scales"
+        }
+      ],
+      "transform": [
+        {"filter": {"param": "category_selection"}},
+        {
+          "aggregate": [{"op": "count", "as": "Accident_Count"}],
+          "groupby": ["Community", "Population Density"]
+        }
+      ],
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "Population Density",
+          "type": "quantitative",
+          "title": "Population Density (per area unit)",
+          "scale": {"type": "symlog"}
+        },
+        "y": {
+          "field": "Accident_Count",
+          "type": "quantitative",
+          "title": "Number of Accidents"
+        },
+        "tooltip": [
+          {"field": "Community", "type": "nominal"},
+          {"field": "Accident_Count", "type": "quantitative", "title": "Accidents"},
+          {"field": "Population Density", "type": "quantitative", "format": ".2f"}
+        ]
+      }
+    }
+  ]
+}
