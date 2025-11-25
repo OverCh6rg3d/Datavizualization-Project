@@ -68,7 +68,7 @@
 					"field": "day_type",
 					"type": "nominal",
 					"title": "Day Type",
-					"scale": {"scheme": "set1"},
+					"scale": {"scheme": "category10"},
 					"legend": {
 						"orient": "top-right",
 						"titleFontSize": 12,

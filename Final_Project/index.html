@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizing Dubai Accidents</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Visualizing Dubai Accidents</h1>
+            <div class="authors">
+                <p><strong>Authors:</strong></p>
+                <ul>
+                    <li>Ali Eissa</li>
+                    <li>Ammar Okla</li>
+                    <li>Anirudh Sengar</li>
+                    <li>Mohammed Kohanfekr</li>
+                    <li>Suleiman Altaf</li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Visualization 1 -->
+        <section class="viz-section">
+            <div id="viz1"></div>
+            <div class="explanation">
+                <h2>Encoding</h2>
+                <!-- Placeholder text for Encoding -->
+                <p>This section describes the encoding choices for this visualization.</p>
+                
+                <h2>Interaction</h2>
+                <!-- Placeholder text for Interaction -->
+                <p>This section describes the interactive features available in this visualization.</p>
+                
+                <h2>Value Added</h2>
+                <!-- Placeholder text for Value Added -->
+                <p>This section explains the value and insights provided by this visualization.</p>
+            </div>
+        </section>
+
+        <!-- Visualization 2 -->
+        <section class="viz-section">
+            <div id="viz2"></div>
+            <div class="explanation">
+                <h2>Encoding</h2>
+                <!-- Placeholder text for Encoding -->
+                <p>This section describes the encoding choices for this visualization.</p>
+                
+                <h2>Interaction</h2>
+                <!-- Placeholder text for Interaction -->
+                <p>This section describes the interactive features available in this visualization.</p>
+                
+                <h2>Value Added</h2>
+                <!-- Placeholder text for Value Added -->
+                <p>This section explains the value and insights provided by this visualization.</p>
+            </div>
+        </section>
+
+        <!-- Visualization 3 -->
+        <section class="viz-section">
+            <div id="viz3"></div>
+            <div class="explanation">
+                <h2>Encoding</h2>
+                <!-- Placeholder text for Encoding -->
+                <p>This section describes the encoding choices for this visualization.</p>
+                
+                <h2>Interaction</h2>
+                <!-- Placeholder text for Interaction -->
+                <p>This section describes the interactive features available in this visualization.</p>
+                
+                <h2>Value Added</h2>
+                <!-- Placeholder text for Value Added -->
+                <p>This section explains the value and insights provided by this visualization.</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="viz-specs.js"></script>
+    <script>
+        // Load and render visualization 1
+        async function loadViz1() {
+            try {
+                await vegaEmbed('#viz1', viz1Spec, {actions: false});
+            } catch (error) {
+                console.error('Error loading viz1:', error);
+                document.getElementById('viz1').innerHTML = '<p style="color: red; padding: 20px;">Error loading visualization 1: ' + error.message + '</p>';
+            }
+        }
+
+        // Load and render visualization 2
+        async function loadViz2() {
+            try {
+                await vegaEmbed('#viz2', viz2Spec, {actions: false});
+            } catch (error) {
+                console.error('Error loading viz2:', error);
+                document.getElementById('viz2').innerHTML = '<p style="color: red; padding: 20px;">Error loading visualization 2: ' + error.message + '</p>';
+            }
+        }
+
+        // Load and render visualization 3
+        async function loadViz3() {
+            try {
+                await vegaEmbed('#viz3', viz3Spec, {actions: false});
+            } catch (error) {
+                console.error('Error loading viz3:', error);
+                document.getElementById('viz3').innerHTML = '<p style="color: red; padding: 20px;">Error loading visualization 3: ' + error.message + '</p>';
+            }
+        }
+
+        // Load all visualizations when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            loadViz1();
+            loadViz2();
+            loadViz3();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.authors {
+    margin-top: 20px;
+}
+
+.authors p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.authors ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.authors li {
+    background-color: #f8f9fa;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #495057;
+}
+
+.viz-section {
+    margin-bottom: 60px;
+}
+
+.viz-section:last-child {
+    margin-bottom: 0;
+}
+
+#viz1, #viz2, #viz3 {
+    margin: 30px 0;
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+/* Ensure Vega-Lite SVG elements respect container width */
+#viz1 svg, #viz2 svg, #viz3 svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure the Vega-Lite container divs are properly sized */
+#viz1 > div, #viz2 > div, #viz3 > div {
+    width: 100%;
+    max-width: 100%;
+}
+
+.explanation {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.explanation h2 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.explanation h2:first-child {
+    margin-top: 0;
+}
+
+.explanation p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .authors ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}
