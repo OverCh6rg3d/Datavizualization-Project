@@ -27,55 +27,329 @@
 
         <!-- Visualization 1 -->
         <section class="viz-section">
+            <h2>Visualization 1</h2>
             <div id="viz1"></div>
             <div class="explanation">
+
                 <h2>Encoding</h2>
-                <!-- Placeholder text for Encoding -->
-                <p>This section describes the encoding choices for this visualization.</p>
+
+                <p>
+                    The visualization above visualizes the number of accidents in Dubai by community over different weeks
+                    from 9 March 2023 to 19 September 2024, featuring two views with bi-directional interaction, a
+                    Choropleth Map and a Line Chart.<br>
+                    However, the given data was missing for some time periods. To mitigate this,
+                    the time periods with no recorded accidents were truncated to enable us to visualize the overall
+                    trend effectively.
+
+                    <ol>
+                        <strong><li>Choropleth Map: -</li></strong>
+                        <ul>
+                            <li>Accident Count is encoded by sequential color intensity (saturation/luminance)</li>
+                        </ul>
+
+                        <strong><li>Line Chart: -</li></strong>
+                        <ul>
+                            <li>Week Date is encoded by horizontal position on the x-axis</li>
+                            <li>Accident Count is encoded by the vertical position on the y-axis</li>
+                        </ul>
+                    </ol>
+                </p>
                 
                 <h2>Interaction</h2>
-                <!-- Placeholder text for Interaction -->
-                <p>This section describes the interactive features available in this visualization.</p>
+
+                <p>
+                    <ul>
+                        <li>
+                            Selecting a community in the Choropleth filters the line chart to show accidents trend 
+                            only for that specific community.
+                        </li>
+                        <li>
+                            Selecting a time range filters the choropleth to show accident counts only for that time range.
+                        </li>
+                        <li>
+                            Hovering over a specific polygon displays a tooltip that identifies the community
+                            and accident count associated with it
+                        </li>
+                    </ul>
+                </p>
+
+                <h2>Preprocessing</h2>
+
+                <p>
+                    To create a choropleth map that interacts with a line chart, a lot of preprocessing was required.<br>
+                    Firstly, we obtained the geojson data that defines the geometry of communities in Dubai from
+                    <a href="https://www.kaggle.com/datasets/subhanahsan/dubai-neighborhoods?select=dubai.geojson">kaggle</a>.
+                    Since we already have the exact geographical locations of each accident, we used a python script
+                    that reads the given accidents data as well as the externally obtained geojson file using Pandas and Geopandas libraries.
+                    The python script performed a spatial join to add a new field "Community" to the accidents.csv file that tells the
+                    Dubai community where this accident happened.<br>
+                    We still needed to do more preprocessing if we wanted to show the weekly accident count. Using a python script,
+                    we aggregated the accidents data to show all of the weekly accident counts for each community in that time span
+                    (meaning that now we have [# communities * # weeks] records).<br>
+                    Finally, in Vega-Lite, a transformation of the data was done to show the accident count for each community filtered by
+                    the user's interaction with the line chart selection, and another transformation was done to show the accident count for
+                    each week filtered by the user's interaction with the choropleth community selection.
+                </p>
                 
                 <h2>Value Added</h2>
-                <!-- Placeholder text for Value Added -->
-                <p>This section explains the value and insights provided by this visualization.</p>
+
+                <p>
+                    <ol>
+                        <li>Easily visualizing accident distribution in different places in Dubai.</li>
+                        <li>Finding hotspots where most accidents occur in Dubai over different time periods</li>
+                        <li>Understanding the overall trend of accidents in Dubai and in each community</li>
+                        <li>Identifying points in time with peak number of accidents</li>
+                    </ol>
+                </p>
+
+                <h2>Conclusions</h2>
+                <p>
+                    <ol>
+                        <li>Most of the time, Business Bay has the most accident distribution</li>
+                        <li>Most accidents happen in areas near the coast. Over there is the most population density,
+                            which means increased traffic thus more accidents.
+                        </li>
+                        <li>The sudden drops in the line graph can be explained by unrecorded accidents around that time</li>
+                        <li>The most accidents happened in early march and late august 2024</li>
+                        <li>Accident intensity is mostly between ~1500 and ~2000 other than the sudden drops</li>
+                    </ol>
+                </p>
+
             </div>
         </section>
 
         <!-- Visualization 2 -->
         <section class="viz-section">
+            <h2>Visualization 2</h2>
             <div id="viz2"></div>
             <div class="explanation">
+
                 <h2>Encoding</h2>
-                <!-- Placeholder text for Encoding -->
-                <p>This section describes the encoding choices for this visualization.</p>
+
+                <p>
+                    The visualization above is interactive and features three views, 
+                    a line chart, a horizontal bar chart, and a pie chart.
+
+                    <ol>
+                        <strong><li>Line Chart: -</li></strong>
+                        <p>
+                            This view shows the trend of the average number of accidents over the hours
+                            of the day, comparing regular week days with week ends.
+                        </p>
+                        <ul>
+                            <li>The 24 hours of the day are encoded by horizontal position on x-axis</li>
+                            <li>Average Accident Count is encoded by vertical position on y-axis</li>
+                            <li>Day type (week day or week end) is encoded by color of line</li>
+                        </ul>
+
+                        <strong><li>Horizontal Bar Chart: -</li></strong>
+                        <p>
+                            This view categorizes accidents into 3 types and compares them by accident count.
+                        </p>
+                        <ul>                        
+                            <li>Accident Count is encoded by the horizontal length of the bar</li>
+                            <li>Accident Category is encoded by vertical region</li>
+                            <li>Although redundant, the Accident Category is also encoded by color hue of bar for better looks</li>
+                        </ul>
+
+                        <strong><li>Pie Chart: -</li></strong>
+                        <p>
+                            This view also categorizes accidents into 3 types and compares them by percentage of total.
+                        </p>
+                        <ul>
+                            <li>Accident Count is encoded by the angle of sector</li>
+                            <li>Accident Category is encoded by color hue of sector</li>
+                        </ul>
+                    </ol>
+
+                </p>
                 
                 <h2>Interaction</h2>
-                <!-- Placeholder text for Interaction -->
-                <p>This section describes the interactive features available in this visualization.</p>
+
+                <p>
+                    <ul>
+                        <li>
+                            Selecting a bar or sector filters the line chart to show the trend for only
+                            that specific accident category.
+                        </li>
+                        <li>
+                            Selecting a time range in the line chart filters both the bar chart and pie chart
+                            to show the distribution of categories over only that specific time range.
+                        </li>
+                        <li>
+                            Hovering over a bar displays a tooltip that shows the exact accident count
+                            for more precision
+                        </li>
+                        <li>
+                            Hovering over a sector displays a tooltip that shows the percentage distribution
+                            for more precision
+                        </li>
+                    </ul>
+
+                     
+                </p>
                 
+                <h2>Preprocessing</h2>
+
+                <p>
+                    For this visualization, we simply derived data from the existing dataset without needing external sources.
+                    Using excel sheet formulas, we created a new field that categorized accident records based on the accident name
+                    into 3 main categories "Minor", "Major", and "Other".<br>
+                    Moreover, more data transformation was done on Vega-Lite. Firstly, the date was parsed into the correct format
+                    then used to derive the hour of day and day type (week-day or week-end). We then summed up all the unique dates
+                    to find total number of days in this data set, and created a constant that equals 1 / total number of days which
+                    we called "weighted_accident_count" which will be useful. The next step was to find the average accident
+                    count for each hour of the day. To simplify what we did, to find the average accident count for
+                    hour x, we summed up the "weighted_accident_count" for all accident records that happened at hour x.
+                </p>
+
                 <h2>Value Added</h2>
-                <!-- Placeholder text for Value Added -->
-                <p>This section explains the value and insights provided by this visualization.</p>
+
+                <p>
+                    <ol>
+                        <li>Comparing the trends of overall average accidents per hour for week-days vs week-ends, and for each category</li>
+                        <li>Understanding the distribution and ranking of accident categories for any time range</li>
+                        <li>Identifying peak hours and hours with least overall accident intensity and for each category</li>
+                    </ol>
+                </p>
+
+                <h2>Conclusions</h2>
+
+                <p>
+                    <ol>
+                        <li>
+                            During most of the day, more accidents happen during week-days. However, at late night,
+                            more accidents happen during the week-end. People stay up more and go out late during the week-ends.                          
+                        </li>
+                        <li>Similar trends can be observed for all the categories</li>
+                        <li>Most accidents take place during peak working hours</li>
+                        <li>Most accidents are minor</li>
+                    </ol>
+                </p>
+
             </div>
         </section>
 
         <!-- Visualization 3 -->
         <section class="viz-section">
+            <h2>Visualization 3</h2>
             <div id="viz3"></div>
             <div class="explanation">
+                
                 <h2>Encoding</h2>
-                <!-- Placeholder text for Encoding -->
-                <p>This section describes the encoding choices for this visualization.</p>
+                <p>
+                    The visualization above is interactive and features two views, a bar chart and a scatterplot.
+                    It analyses the relation between the number of accidents and population density for each community.
+                    It also compares this relation for different accident categories through interaction.
+
+                    <ol>
+                        <strong><li>Bar Chart</li></strong>
+                        <p>This view categorizes accidents into 3 types and compares them by accident count.</p>
+                        <ul>                        
+                            <li>Accident Count is encoded by the vertical length of the bar</li>
+                            <li>Accident Category is encoded by the horizontal region</li>
+                            <li>Although redundant, the Accident Category is also encoded by color hue of bar for better looks</li>
+                        </ul>
+
+                        <strong><li>Scatterplot</li></strong>
+                        <p>
+                            This view displays the relationship between number of accidents and population density
+                            by community. It uses a logarithmic scale for both the x and y axes for better analysis.
+                            Each point represents a community in Dubai.
+                        </p>
+                        <ul>                        
+                            <li>Accident Count is encoded by the vertical position of point on the y-axis</li>
+                            <li>Population Density is encoded by the horizontal position of point on the x-axis</li>
+                        </ul>
+                    </ol>
+                </p>
                 
                 <h2>Interaction</h2>
-                <!-- Placeholder text for Interaction -->
-                <p>This section describes the interactive features available in this visualization.</p>
+                <p>
+                    <ul>
+                        <li>
+                            Selecting a bar changes the scatterplot to show the number of accidents of each plot
+                            for only that speciifc category
+                        </li>
+                        <li>Panning and zoom in the scatterplot for free navigation and detail view</li>
+                        <li>
+                            Hovering over a plot displays a tooltip that shows the
+                            community name, accident count, and population density
+                        </li>
+
+                    </ul>    
+                </p>
                 
+                <h2>Preprocessing</h2>
+                <p>
+                    Creating this visualization required additional data about Dubai communities. We obtained data for
+                    community area and 2023 population from 
+                    <a href="https://www.citypopulation.de/en/uae/dubai/admin/">CityPopulation.de</a> and estimated
+                    the population density for each community using excel sheets.<br>
+                    Next, by performing an aggregate count and grouping by community in Vega-Lite, 
+                    we got the accident count for each community and its population density.
+                </p>
+
                 <h2>Value Added</h2>
-                <!-- Placeholder text for Value Added -->
-                <p>This section explains the value and insights provided by this visualization.</p>
+                <p>
+                    <ol>
+                        <li>Understanding the accident distribution and ranking by category</li>
+                        <li>
+                            Analysing the correlation between number of accidents of each accident category
+                            and population density
+                        </li>
+                        <li>Identifying outlier communities</li>
+                        <li>Finding clusters with close ratio of accident count over population density</li>
+                        <li>Finding communities with maximum or minimum values of accident count and population density</li>
+                    </ol>
+                </p>
+
+                <h2>Conclusions</h2>
+                <p>
+                    <ol>
+                        <li>Most accidents are minor</li>
+                        <li>There is a weak positive correlation for all accident categories against population density</li>
+                        <li>
+                            The relationship between number of accidents for all categories and population density in different 
+                            communities is non-linear and more towards exponential.
+                            This is explained by how the logarithmic axes makes the pattern seem linear.
+                        </li>
+                        <li>
+                            Outliers above the main pattern can be explained by non-residual areas that many people visit everyday
+                            such as work places or airports. One example is Dubai International Airport.
+                        </li>
+
+                        <li>For all accidents and minor, the following cities are outliers: -</li>
+                        <ul>
+                            <li>Dubai International Airport</li>
+                            <li>Al Wohoosh</li>
+                            <li>Remah</li>
+                            <li>Al Meryal</li>
+                            <li>Al Buteen</li>
+                            <li>Al Sabkha</li>
+                        </ul>
+
+                        <li>For major accidents, the following cities are outliers</li>
+                        <ul>
+                            <li>Dubai International Airport</li>
+                            <li>Al Daghaya</li>
+                            <li>Al Sabkha</li>
+                            <li>Al Buteen</li>
+                            <li>Al Ttay</li>
+                            <li>Al Hamriya Port</li>
+                        </ul>
+
+                        <li>For other accidents, the following cities are outliers</li>
+                        <ul>
+                            <li>Al Rowaiyah Second</li>
+                            <li>Dubai International Airport</li>
+                            <li>Ayal Nasir</li>
+                            <li>Al Sabkha</li>
+                            <li>Al Daghaya</li>
+                        </ul>
+                    </ol>
+                </p>
+                <!-- PUT LAYERS! -->
             </div>
         </section>
     </div>
@@ -85,7 +359,7 @@
         // Load and render visualization 1
         async function loadViz1() {
             try {
-                await vegaEmbed('#viz1', viz1Spec, {actions: false});
+                await vegaEmbed("#viz1", viz1Spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
             } catch (error) {
                 console.error('Error loading viz1:', error);
                 document.getElementById('viz1').innerHTML = '<p style="color: red; padding: 20px;">Error loading visualization 1: ' + error.message + '</p>';
@@ -95,7 +369,7 @@
         // Load and render visualization 2
         async function loadViz2() {
             try {
-                await vegaEmbed('#viz2', viz2Spec, {actions: false});
+                await vegaEmbed("#viz2", viz2Spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
             } catch (error) {
                 console.error('Error loading viz2:', error);
                 document.getElementById('viz2').innerHTML = '<p style="color: red; padding: 20px;">Error loading visualization 2: ' + error.message + '</p>';
@@ -105,7 +379,7 @@
         // Load and render visualization 3
         async function loadViz3() {
             try {
-                await vegaEmbed('#viz3', viz3Spec, {actions: false});
+                await vegaEmbed("#viz3", viz3Spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
             } catch (error) {
                 console.error('Error loading viz3:', error);
                 document.getElementById('viz3').innerHTML = '<p style="color: red; padding: 20px;">Error loading visualization 3: ' + error.message + '</p>';
