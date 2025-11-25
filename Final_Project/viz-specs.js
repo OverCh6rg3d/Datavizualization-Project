@@ -168,7 +168,7 @@ const viz2Spec = {
 	],
 	"vconcat": [
 		{
-			"width": "container",
+			"width": 650,
 			"height": 300,
 			"title": "Average Accidents per Hour: Weekday vs Weekend (Drag to Filter)",
 			"mark": "line",
